@@ -1,0 +1,6 @@
+[testhost]
+# Replace with your target host. Must be:
+# - Accessible via SSH
+# - Running a Debian/Ubuntu system where /bin/sh -> dash
+# - Has python3 installed but may or may not have 'python' symlink
+your-remote-host ansible_user=root ansible_port=22

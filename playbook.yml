@@ -1,0 +1,22 @@
+---
+- name: Reproduce ansible-core 2.17 shebang quoting regression
+  hosts: testhost
+  gather_facts: no
+
+  tasks:
+    - name: Test module with #!/usr/bin/python (should always work)
+      module_correct_shebang:
+      register: result_good
+
+    - name: Show result for #!/usr/bin/python module
+      debug:
+        var: result_good
+
+    - name: Test module with #!/usr/bin/env python (fails on 2.17.x)
+      module_incorrect_shebang:
+      register: result_bad
+      ignore_errors: true
+
+    - name: Show result for #!/usr/bin/env python module
+      debug:
+        var: result_bad
